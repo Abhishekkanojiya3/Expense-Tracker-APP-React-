@@ -3,17 +3,25 @@ import Card from '../UI/Card';
 import './Expenses.css';
 
 function Expenses(props) {
-    console.log(props)
+
+    const deleteExpenseHandler = (id) => {
+        const filteredExpenses = props.expenses.filter(expense => expense.id !== id);
+        props.onDeleteExpense(filteredExpenses);
+    };
     return ( <
         Card className = "expenses" >
 
         {
             props.expenses.map(expense => ( <
-                ExpenseItems title = { expense.title }
+                ExpenseItems key = { expense.id }
+                title = { expense.title }
                 amount = { expense.amount }
                 date = { expense.date }
-                location = { expense.location } >
-                < /ExpenseItems>
+                location = { expense.location }
+                onDeleteExpense = {
+                    () => deleteExpenseHandler(expense.id) }
+
+                />
             ))
         } <
         /Card>

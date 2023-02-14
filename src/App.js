@@ -24,6 +24,7 @@ const App = () => {
             location: 'Dehradun'
         },
     ];
+
     return ( <
         div >
         <
